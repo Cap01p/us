@@ -5,10 +5,10 @@ import Header from '../components/Header.astro';
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description = "Expert tips and tools for employers to manage unemployment claims." } = Astro.props;
 const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
 ---
 

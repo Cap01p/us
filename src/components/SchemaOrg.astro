@@ -1,0 +1,56 @@
+---
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Us4U",
+  "url": "https://www.us4u.us",
+  "description": "Expert tips and tools for employers to manage unemployment claims, reduce costs, and prepare for appeals."
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Us4U",
+  "url": "https://www.us4u.us",
+  "logo": "https://www.us4u.us/images/logo.png",
+  "sameAs": [
+    "https://www.linkedin.com/company/us4u",
+    "https://twitter.com/us4u"
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I reduce unemployment tax rates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By contesting invalid claims and ensuring proper documentation, you can lower your unemployment tax rates. Maintaining detailed records of employee performance, following proper termination procedures, and responding promptly to claims are key strategies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the deadline to appeal an unemployment claim?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deadlines for appeals vary by state but are typically within 10–30 days of the initial decision. It's crucial to act quickly once you receive a determination to preserve your appeal rights."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should I audit my unemployment charges?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Auditing helps identify inaccuracies in your unemployment charges, saving you money in the long run. Regular audits can uncover duplicate charges, incorrect benefit charges, and other errors that may increase your tax rate."
+      }
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} /> 

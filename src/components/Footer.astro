@@ -1,0 +1,163 @@
+---
+const currentYear = new Date().getFullYear();
+
+const links = [
+  { text: "Privacy Policy", href: "/privacy" },
+  { text: "Terms of Service", href: "/terms" },
+  { text: "Contact Us", href: "/contact" }
+];
+
+const socialLinks = [
+  { icon: "linkedin", href: "#", label: "LinkedIn" },
+  { icon: "twitter", href: "#", label: "Twitter" }
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Unemployment Cost Optimization</h3>
+        <p>Simplifying unemployment cost management for employers nationwide. (us4u)</p>
+      </div>
+      
+      <nav class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          {links.map(link => (
+            <li>
+              <a href={link.href}>{link.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Need assistance? We're here to help.</p>
+        <a href="mailto:support@us4u.us" class="contact-email">support@us4u.us</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} Us4U. All rights reserved.</p>
+      <div class="social-links">
+        {socialLinks.map(link => (
+          <a href={link.href} aria-label={link.label} class={`social-icon ${link.icon}`}>
+            <span class="sr-only">{link.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    padding: 4rem 2rem 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand h3 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+  }
+
+  .footer-brand p {
+    color: #9ca3af;
+    max-width: 300px;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: #f3f4f6;
+  }
+
+  .contact-email {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-icon {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .social-icon:hover {
+    color: #f3f4f6;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+</style> 

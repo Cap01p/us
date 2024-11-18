@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Privacy Policy | Us4U - Unemployment Cost Management"
+  description="Us4U's privacy policy outlines how we collect, use, and protect your information when using our unemployment cost management services."
+>
+  <main class="policy-page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> / Privacy Policy
+      </nav>
+      
+      <h1>Privacy Policy</h1>
+      
+      <div class="content">
+        <section>
+          <h2>Information We Collect</h2>
+          <p>We collect information that you provide directly to us, including:</p>
+          <ul>
+            <li>Contact information (name, email, phone number)</li>
+            <li>Company information</li>
+            <li>Usage data and preferences</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How We Use Your Information</h2>
+          <p>We use the collected information to:</p>
+          <ul>
+            <li>Provide and improve our services</li>
+            <li>Send important updates and notifications</li>
+            <li>Respond to your inquiries</li>
+            <li>Analyze and enhance user experience</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Information Sharing</h2>
+          <p>We do not sell or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
+          <ul>
+            <li>With your consent</li>
+            <li>To comply with legal obligations</li>
+            <li>To protect our rights and safety</li>
+          </ul>
+        </section>
+
+        <div class="related-links">
+          <h3>Related Information</h3>
+          <ul>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .policy-page {
+    padding: 4rem 2rem;
+    background-color: var(--background-color);
+    min-height: 80vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+  }
+
+  .content {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  section {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  p, li {
+    color: var(--text-color);
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .related-links {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .related-links h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .related-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .related-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .related-links a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .policy-page {
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style> 

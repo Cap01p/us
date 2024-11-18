@@ -1,0 +1,89 @@
+---
+import SchemaOrg from '../components/SchemaOrg.astro';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="unemployment cost optimization, unemployment cost management, employer unemployment claims, reduce unemployment costs" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.us4u.us" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
+
+    <!-- Schema.org markup -->
+    <SchemaOrg />
+  </head>
+  <body>
+    <Header />
+    <DarkModeToggle />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary-color: #2563eb;
+    --text-color: #1f2937;
+    --background-color: #ffffff;
+    --card-background: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.1);
+  }
+
+  :root.dark {
+    --primary-color: #3b82f6;
+    --text-color: #f3f4f6;
+    --background-color: #111827;
+    --card-background: #1f2937;
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding-top: 4rem;
+  }
+
+  .dark body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+</style> 

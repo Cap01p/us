@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 959 593" xmlns="http://www.w3.org/2000/svg">
+  <!-- This is a simplified version. You'll want to add the full SVG path data for each state -->
+  <path id="CA" d="M144.7 382.3l-1.9-3.2-3.8..." fill="#ddd"/>
+  <path id="NY" d="M843.4 200.3l-2.2-1.6-2.7..." fill="#ddd"/>
+  <path id="TX" d="M462.8 472.8l-2.8-1.9-3.2..." fill="#ddd"/>
+  <!-- Add more state paths -->
+</svg> 

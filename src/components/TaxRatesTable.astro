@@ -1,0 +1,195 @@
+---
+const taxRates = [
+  { state: "Alabama", wageBase: "$8,000", rateRange: "0.14-5.34%", newEmployerRate: "2.7%" },
+  { state: "Alaska", wageBase: "$49,700", rateRange: "1.0-5.4%", newEmployerRate: "Varies" },
+  { state: "Arizona", wageBase: "$8,000", rateRange: "0.05-14.03%", newEmployerRate: "2.0%" },
+  { state: "Arkansas", wageBase: "$7,000", rateRange: "0.225-10.125%", newEmployerRate: "2.025%" },
+  { state: "California", wageBase: "$7,000", rateRange: "1.5-6.2%", newEmployerRate: "3.4%" },
+  { state: "Colorado", wageBase: "$23,800", rateRange: "0.81-12.34%", newEmployerRate: "3.05%" },
+  { state: "Connecticut", wageBase: "$25,000", rateRange: "1.1-7.8%", newEmployerRate: "2.5%" },
+  { state: "Delaware", wageBase: "$10,500", rateRange: "0.10-5.40%", newEmployerRate: "1.2%" },
+  { state: "Florida", wageBase: "$7,000", rateRange: "0.1-5.4%", newEmployerRate: "2.7%" },
+  { state: "Georgia", wageBase: "$9,500", rateRange: "0.04-8.1%", newEmployerRate: "2.64%" },
+  { state: "Hawaii", wageBase: "$59,100", rateRange: "0.2-5.8%", newEmployerRate: "3.0%" },
+  { state: "Idaho", wageBase: "$53,500", rateRange: "0.281-5.4%", newEmployerRate: "1.0%" },
+  { state: "Illinois", wageBase: "$13,590", rateRange: "0.850-8.650%", newEmployerRate: "3.950%" },
+  { state: "Indiana", wageBase: "$9,500", rateRange: "0.5-7.4%", newEmployerRate: "2.5%" },
+  { state: "Iowa", wageBase: "$38,200", rateRange: "0-7.0%", newEmployerRate: "1.0%" },
+  { state: "Kansas", wageBase: "$14,000", rateRange: "0.16-6.0%", newEmployerRate: "2.7%" },
+  { state: "Kentucky", wageBase: "$11,400", rateRange: "0.3-9.0%", newEmployerRate: "2.7%" },
+  { state: "Louisiana", wageBase: "$7,700", rateRange: "0.09-6.2%", newEmployerRate: "Varies" },
+  { state: "Maine", wageBase: "$12,000", rateRange: "0.0-5.75%", newEmployerRate: "2.04%" },
+  { state: "Maryland", wageBase: "$8,500", rateRange: "0.3-7.5%", newEmployerRate: "2.6%" },
+  { state: "Massachusetts", wageBase: "$15,000", rateRange: "0.73-11.13%", newEmployerRate: "1.45%" },
+  { state: "Michigan", wageBase: "$9,500", rateRange: "0.06-10.3%", newEmployerRate: "2.7%" },
+  { state: "Minnesota", wageBase: "$42,000", rateRange: "0.01-8.9%", newEmployerRate: "Varies" },
+  { state: "Mississippi", wageBase: "$14,000", rateRange: "0.2-5.4%", newEmployerRate: "1.0-1.2%" },
+  { state: "Missouri", wageBase: "$10,000", rateRange: "0-6.0%", newEmployerRate: "2.376%" },
+  { state: "Montana", wageBase: "$43,000", rateRange: "0-6.12%", newEmployerRate: "1.0-2.1%" },
+  { state: "Nebraska", wageBase: "$9,000/$24,000", rateRange: "0-5.4%", newEmployerRate: "1.25%" },
+  { state: "Nevada", wageBase: "$40,600", rateRange: "0.25-5.4%", newEmployerRate: "2.95%" },
+  { state: "New Hampshire", wageBase: "$14,000", rateRange: "0.1-8.5%", newEmployerRate: "2.7%" },
+  { state: "New Jersey", wageBase: "$42,300", rateRange: "0.6-6.4%", newEmployerRate: "3.1%" },
+  { state: "New Mexico", wageBase: "$31,500", rateRange: "0.33-6.4%", newEmployerRate: "1.0%" },
+  { state: "New York", wageBase: "$12,500", rateRange: "2.025-9.825%", newEmployerRate: "4.025%" },
+  { state: "North Carolina", wageBase: "$31,400", rateRange: "0.06-5.76%", newEmployerRate: "1.0%" },
+  { state: "North Dakota", wageBase: "$43,800", rateRange: "0.08-9.68%", newEmployerRate: "1.09%" },
+  { state: "Ohio", wageBase: "$9,000", rateRange: "0.4-10.1%", newEmployerRate: "2.7%" },
+  { state: "Oklahoma", wageBase: "$27,000", rateRange: "0.3-9.2%", newEmployerRate: "1.5%" },
+  { state: "Oregon", wageBase: "$52,800", rateRange: "0.9-5.4%", newEmployerRate: "2.4%" },
+  { state: "Pennsylvania", wageBase: "$10,000", rateRange: "1.419-10.3734%", newEmployerRate: "3.822%" },
+  { state: "Rhode Island", wageBase: "$29,200/$30,700", rateRange: "0.89-9.07%", newEmployerRate: "0.79%" },
+  { state: "South Carolina", wageBase: "$14,000", rateRange: "0-5.4%", newEmployerRate: "0.41%" },
+  { state: "South Dakota", wageBase: "$15,000", rateRange: "0-8.8%", newEmployerRate: "1.2%" },
+  { state: "Tennessee", wageBase: "$7,000", rateRange: "0.01-10.0%", newEmployerRate: "2.7%" },
+  { state: "Texas", wageBase: "$9,000", rateRange: "0.25-6.25%", newEmployerRate: "2.7%" },
+  { state: "Utah", wageBase: "$47,000", rateRange: "0.3-7.3%", newEmployerRate: "1.0-7.3%" },
+  { state: "Vermont", wageBase: "$14,300", rateRange: "0.4-5.4%", newEmployerRate: "1.0%" },
+  { state: "Virginia", wageBase: "$8,000", rateRange: "0.13-6.23%", newEmployerRate: "2.5%" },
+  { state: "Washington", wageBase: "$68,500", rateRange: "0.27-6.02%", newEmployerRate: "Varies" },
+  { state: "West Virginia", wageBase: "$9,521", rateRange: "1.5-8.5%", newEmployerRate: "2.7%" },
+  { state: "Wisconsin", wageBase: "$14,000", rateRange: "0.0-12.0%", newEmployerRate: "3.05%" },
+  { state: "Wyoming", wageBase: "$30,900", rateRange: "0-8.65%", newEmployerRate: "Varies" }
+];
+---
+
+<section id="tax-rates" class="tax-rates-section">
+  <div class="container">
+    <h2>State Unemployment Insurance (SUI) Tax Rates 2024</h2>
+    <p class="section-description">The following table shows the 2024 SUI tax rates and wage bases for merit-rated employers:</p>
+    
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Wage Base</th>
+            <th>Rate Range</th>
+            <th>New Employer Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {taxRates.map(rate => (
+            <tr>
+              <td>{rate.state}</td>
+              <td>{rate.wageBase}</td>
+              <td>{rate.rateRange}</td>
+              <td>{rate.newEmployerRate}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="additional-notes">
+      <h3>Additional Notes</h3>
+      <ol>
+        <li>The wage base is the maximum amount of wages per employee that are subject to unemployment tax.</li>
+        <li>Rate ranges show the minimum and maximum rates that employers may pay based on their experience rating.</li>
+        <li>New employer rates apply to businesses without sufficient history to qualify for an experience rating.</li>
+        <li>Some states have additional assessments or surcharges that may apply.</li>
+        <li>Several states have announced significant changes for 2024, including Connecticut's wage base increase from $15,000 to $25,000.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tax-rates-section {
+    padding: 4rem 2rem;
+    background-color: var(--background-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .section-description {
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    background: var(--card-background);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  th {
+    background: var(--card-background);
+    font-weight: 600;
+    color: var(--text-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  td {
+    color: var(--text-color);
+  }
+
+  tr:hover {
+    background: var(--background-color);
+  }
+
+  .additional-notes {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  .additional-notes h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+
+  .additional-notes ol {
+    padding-left: 1.5rem;
+    color: var(--text-color);
+    opacity: 0.9;
+  }
+
+  .additional-notes li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .tax-rates-section {
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+    }
+  }
+</style> 

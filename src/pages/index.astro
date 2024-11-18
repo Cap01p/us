@@ -1,16 +1,27 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import KeyInformation from '../components/KeyInformation.astro';
+import CostCalculator from '../components/CostCalculator.astro';
+import Facts from '../components/Facts.astro';
+import TaxRatesTable from '../components/TaxRatesTable.astro';
+import Tools from '../components/Tools.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout 
+  title="Unemployment Cost Optimization (us4u) | Expert Solutions for Employers"
+  description="Expert solutions for optimizing unemployment costs, managing claims effectively, and reducing tax rates for employers."
+>
+  <main>
+    <Hero />
+    <KeyInformation />
+    <CostCalculator />
+    <Facts />
+    <TaxRatesTable />
+    <Tools />
+    <FAQ />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,407 @@
+---
+import { stateUIData, calculateSUTA, calculateFUTA, formatCurrency } from '../utils/stateData';
+
+// Sort states alphabetically for the dropdown
+const sortedStates = Object.entries(stateUIData)
+  .sort(([, a], [, b]) => a.name.localeCompare(b.name))
+  .map(([code, data]) => ({
+    code,
+    name: data.name
+  }));
+---
+
+<section id="calculator" class="calculator-section">
+  <div class="container">
+    <h2>Unemployment Cost Calculator</h2>
+    <p class="section-description">Estimate your potential unemployment insurance costs and see how much you could save with effective management strategies.</p>
+
+    <div class="calculator-card">
+      <form id="cost-calculator" class="calculator-form">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="state">State</label>
+            <select id="state" name="state" required>
+              <option value="">Select State</option>
+              {sortedStates.map(state => (
+                <option value={state.code}>{state.name}</option>
+              ))}
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="employees">Number of Employees</label>
+            <input 
+              type="number" 
+              id="employees" 
+              name="employees" 
+              min="1" 
+              placeholder="e.g., 50"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="avgWage">Average Annual Wage per Employee</label>
+            <div class="input-prefix">
+              <span>$</span>
+              <input 
+                type="number" 
+                id="avgWage" 
+                name="avgWage" 
+                min="0" 
+                placeholder="e.g., 45000"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="turnoverRate">Annual Turnover Rate (%)</label>
+            <div class="input-suffix">
+              <input 
+                type="number" 
+                id="turnoverRate" 
+                name="turnoverRate" 
+                min="0" 
+                max="100" 
+                placeholder="e.g., 15"
+                required
+              />
+              <span>%</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="calculate-button">Calculate Costs</button>
+      </form>
+
+      <div id="results" class="calculator-results" style="display: none;">
+        <h3>Estimated Annual Costs</h3>
+        
+        <div class="results-grid">
+          <div class="result-card">
+            <h4>FUTA Tax</h4>
+            <div class="amount" id="futaCost">$0</div>
+            <p class="note">Based on federal rate of 0.6%</p>
+          </div>
+
+          <div class="result-card">
+            <h4>SUTA Tax</h4>
+            <div class="amount" id="sutaCost">$0</div>
+            <p class="note" id="sutaNote">Based on state rate</p>
+          </div>
+
+          <div class="result-card highlight">
+            <h4>Total Annual Cost</h4>
+            <div class="amount" id="totalCost">$0</div>
+          </div>
+
+          <div class="result-card savings">
+            <h4>Potential Savings</h4>
+            <div class="amount" id="potentialSavings">$0</div>
+            <p class="note">With effective management</p>
+          </div>
+        </div>
+
+        <div class="state-info" id="stateInfo">
+          <h4>State-Specific Information</h4>
+          <ul>
+            <li>Wage Base: <span id="wageBase">$0</span></li>
+            <li>Rate Range: <span id="rateRange">0% - 0%</span></li>
+            <li>New Employer Rate: <span id="newEmployerRate">0%</span></li>
+          </ul>
+        </div>
+
+        <div class="recommendations">
+          <h4>Cost Reduction Recommendations</h4>
+          <ul id="recommendations"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .calculator-section {
+    padding: 4rem 2rem;
+    background-color: var(--background-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .section-description {
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+
+  .calculator-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-weight: 500;
+    color: var(--text-color);
+  }
+
+  input, select {
+    padding: 0.75rem;
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-size: 1rem;
+  }
+
+  .input-prefix, .input-suffix {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-prefix span {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+
+  .input-prefix input {
+    padding-left: 1.75rem;
+  }
+
+  .input-suffix span {
+    position: absolute;
+    right: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+
+  .calculate-button {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .calculate-button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .calculator-results {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .result-card {
+    padding: 1.5rem;
+    background: var(--background-color);
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .result-card h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  .amount {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+  }
+
+  .note {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+
+  .highlight {
+    background: var(--primary-color);
+  }
+
+  .highlight h4,
+  .highlight .amount {
+    color: white;
+  }
+
+  .recommendations {
+    margin-top: 2rem;
+  }
+
+  .recommendations h4 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .recommendations ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .recommendations li {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .recommendations li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+  }
+
+  .state-info {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--background-color);
+    border-radius: 0.5rem;
+  }
+
+  .state-info h4 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .state-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .state-info li {
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .state-info span {
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .calculator-section {
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import { stateUIData, calculateSUTA, calculateFUTA, formatCurrency } from '../utils/stateData';
+
+  const calculator = document.getElementById('cost-calculator');
+  const results = document.getElementById('results');
+
+  calculator?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const stateCode = formData.get('state') as string;
+    const employees = Number(formData.get('employees'));
+    const avgWage = Number(formData.get('avgWage'));
+    const turnoverRate = Number(formData.get('turnoverRate'));
+    
+    const stateData = stateUIData[stateCode];
+    if (!stateData) return;
+
+    // Calculate costs
+    const futaCost = calculateFUTA(employees);
+    const sutaCost = calculateSUTA(stateCode, employees, avgWage);
+    const totalCost = futaCost + sutaCost;
+    const potentialSavings = totalCost * 0.25; // Estimate 25% potential savings
+    
+    // Update results
+    if (results) {
+      results.style.display = 'block';
+      
+      // Update costs
+      document.getElementById('futaCost')!.textContent = formatCurrency(futaCost);
+      document.getElementById('sutaCost')!.textContent = formatCurrency(sutaCost);
+      document.getElementById('totalCost')!.textContent = formatCurrency(totalCost);
+      document.getElementById('potentialSavings')!.textContent = formatCurrency(potentialSavings);
+      
+      // Update state info
+      document.getElementById('wageBase')!.textContent = formatCurrency(stateData.wageBase);
+      document.getElementById('rateRange')!.textContent = `${stateData.rateRange.min}% - ${stateData.rateRange.max}%`;
+      document.getElementById('newEmployerRate')!.textContent = `${stateData.newEmployerRate}%`;
+      document.getElementById('sutaNote')!.textContent = `Based on ${stateData.name}'s new employer rate of ${stateData.newEmployerRate}%`;
+      
+      // Add recommendations based on inputs
+      const recommendationsList = document.getElementById('recommendations');
+      if (recommendationsList) {
+        const recommendations = [
+          'Implement proper documentation procedures',
+          'Contest questionable claims promptly',
+          'Maintain accurate employee records',
+          turnoverRate > 10 ? 'Consider implementing retention strategies to reduce turnover' : null,
+          avgWage > stateData.wageBase ? `Consider restructuring compensation to optimize ${stateData.name}'s wage base of ${formatCurrency(stateData.wageBase)}` : null,
+          'Consider unemployment claims management services'
+        ].filter(Boolean);
+
+        recommendationsList.innerHTML = recommendations
+          .map(rec => `<li>${rec}</li>`)
+          .join('');
+      }
+    }
+  });
+</script> 

@@ -1,0 +1,156 @@
+---
+const faqs = [
+  {
+    question: "What are the most effective solutions to reduce unemployment costs?",
+    answer: "The most effective solutions include implementing proper documentation procedures, proactive claims management, and strategic workforce planning. Key measures for unemployment cost reduction include: 1. Maintaining detailed employee records, 2. Contesting invalid claims promptly, 3. Implementing effective hiring practices, 4. Utilizing unemployment claims management software, 5. Regular auditing of unemployment charges."
+  },
+  {
+    question: "How can employers deal with long-term unemployment claims?",
+    answer: "Long-term unemployment solutions require a comprehensive approach. Start by documenting all termination reasons thoroughly, maintain communication with former employees, and consider offering job transition assistance. Implementing structural unemployment solutions like retraining programs can help reduce extended claim periods and associated costs."
+  },
+  {
+    question: "What are the benefits of low unemployment rates for businesses?",
+    answer: "Benefits of low unemployment include reduced tax rates, lower insurance premiums, and improved economic stability. When unemployment rates are low, businesses typically experience fewer claims, leading to significant cost savings and more predictable budget planning."
+  },
+  {
+    question: "How can businesses reduce their unemployment tax burden?",
+    answer: "Methods to reduce unemployment tax burden include: 1. Maintaining accurate records, 2. Timely response to claims, 3. Implementing proper termination procedures, 4. Regular auditing of charges, 5. Using unemployment cost management services. These measures for unemployment cost control can significantly impact your bottom line."
+  },
+  {
+    question: "What are the most common causes of unemployment claims?",
+    answer: "Common causes include layoffs, terminations without proper documentation, seasonal employment fluctuations, and economic downturns leading to cyclical unemployment. Understanding these causes helps in developing effective preventive measures and solutions to unemployment challenges."
+  },
+  {
+    question: "How can employers prevent fraudulent unemployment claims?",
+    answer: "To prevent fraudulent claims, employers should: 1. Document all employee interactions, 2. Maintain detailed attendance records, 3. Conduct thorough exit interviews, 4. Respond promptly to all claims, 5. Implement verification systems. These measures help protect against improper charges and maintain lower rates."
+  },
+  {
+    question: "What role does technology play in unemployment cost management?",
+    answer: "Technology offers creative solutions to unemployment cost management through automated claims tracking, real-time reporting, and predictive analytics. Modern solutions include: 1. Digital documentation systems, 2. Automated response platforms, 3. Integrated compliance tools, 4. Data analytics dashboards, 5. Automated notification systems."
+  },
+  {
+    question: "How can businesses prepare for economic downturns and increased unemployment claims?",
+    answer: "Preparation strategies include: 1. Building reserve funds, 2. Implementing strategic workforce planning, 3. Developing clear policies and procedures, 4. Training managers on proper documentation, 5. Establishing relationships with unemployment cost management experts."
+  },
+  {
+    question: "What are the best practices for maintaining low unemployment insurance rates?",
+    answer: "Best practices include: 1. Proper documentation of all personnel actions, 2. Timely response to claims, 3. Regular training for managers, 4. Maintaining detailed records, 5. Implementing effective return-to-work programs. These structural unemployment solutions help maintain lower rates long-term."
+  },
+  {
+    question: "How can employers effectively contest invalid unemployment claims?",
+    answer: "To effectively contest claims: 1. Gather comprehensive documentation, 2. Respond within deadlines, 3. Present clear evidence, 4. Maintain consistent policies, 5. Consider professional representation. These measures for unemployment claims management significantly improve success rates."
+  }
+];
+---
+
+<section id="faq" class="faq-section">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-list">
+      {faqs.map((faq, index) => (
+        <details class="faq-item">
+          <summary class="faq-question">
+            {faq.question}
+            <span class="icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: 4rem 2rem;
+    background-color: #f8fafc;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-question {
+    position: relative;
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .icon {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+  }
+
+  details[open] .icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    color: #4b5563;
+  }
+
+  .faq-answer p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .faq-section {
+      padding: 3rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<script>
+  // Add smooth animation to accordion
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    const details = item as HTMLDetailsElement;
+    details.addEventListener('toggle', () => {
+      const answer = details.querySelector('.faq-answer') as HTMLElement;
+      if (answer) {
+        if (details.open) {
+          answer.style.maxHeight = `${answer.scrollHeight}px`;
+        } else {
+          answer.style.maxHeight = '0';
+        }
+      }
+    });
+  });
+</script> 

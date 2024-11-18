@@ -1,0 +1,412 @@
+---
+const stateData = {
+  AL: { name: "Alabama", rate: "2.7%", avgCost: 385 },
+  AK: { name: "Alaska", rate: "2.5%", avgCost: 395 },
+  // ... other states
+};
+
+const maxRate = Math.max(...Object.values(stateData).map(state => parseFloat(state.rate)));
+const minRate = Math.min(...Object.values(stateData).map(state => parseFloat(state.rate)));
+const avgRate = (Object.values(stateData).reduce((sum, state) => sum + parseFloat(state.rate), 0) / Object.keys(stateData).length).toFixed(1);
+---
+
+<section class="key-info">
+  <div class="container">
+    <h2>Understanding Unemployment Costs</h2>
+    
+    <div class="info-cards">
+      <div class="card">
+        <h3>What are Unemployment Costs?</h3>
+        
+        <div class="cost-sections">
+          <div class="cost-section">
+            <h4>Federal Unemployment Tax (FUTA)</h4>
+            <ul>
+              <li>6% base rate on first $7,000 of employee wages</li>
+              <li>Maximum of $420 per employee annually</li>
+              <li>Most employers qualify for a 5.4% credit, reducing effective rate to 0.6%</li>
+            </ul>
+          </div>
+
+          <div class="cost-section">
+            <h4>State Unemployment Tax (SUTA)</h4>
+            <ul>
+              <li>Tax rates typically range between 1% and 8% of taxable wages</li>
+              <li>Each state sets its own taxable wage base</li>
+              <li>New employers receive a standard rate before establishing an experience rating</li>
+            </ul>
+          </div>
+
+          <div class="cost-section">
+            <h4>Real Cost Impact</h4>
+            <ul>
+              <li>Average claim payout of $4,200, potentially reaching up to $12,000</li>
+              <li>Tax rate increases can affect employer costs for three years</li>
+              <li>A single claim can increase state tax premiums by $4,000 to $7,000 over three years</li>
+            </ul>
+          </div>
+
+          <div class="cost-section">
+            <h4>Cost Factors</h4>
+            <ul>
+              <li>Industry type (higher turnover industries face higher rates)</li>
+              <li>Company's history of unemployment claims</li>
+              <li>State-specific regulations and wage bases</li>
+              <li>Timely payment of state unemployment taxes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cost-summary">
+          <div class="summary-box">
+            <strong>0.75%</strong>
+            <span>Average UI tax rate of total payroll</span>
+          </div>
+          <div class="summary-box">
+            <strong>$350</strong>
+            <span>Average cost per employee</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>State Tax Rate Summary</h3>
+        <div class="rate-summary">
+          <div class="summary-stat">
+            <span class="label">Lowest Rate</span>
+            <span class="value">{minRate}%</span>
+            <span class="state">{
+              Object.entries(stateData).find(([_, state]) => parseFloat(state.rate) === minRate)?.[1].name
+            }</span>
+          </div>
+          <div class="summary-stat">
+            <span class="label">Average Rate</span>
+            <span class="value">{avgRate}%</span>
+            <span class="state">National Average</span>
+          </div>
+          <div class="summary-stat">
+            <span class="label">Highest Rate</span>
+            <span class="value">{maxRate}%</span>
+            <span class="state">{
+              Object.entries(stateData).find(([_, state]) => parseFloat(state.rate) === maxRate)?.[1].name
+            }</span>
+          </div>
+        </div>
+
+        <div class="tax-insights">
+          <h4>Key Tax Rate Insights</h4>
+          <div class="insights-grid">
+            <div class="insight-item">
+              <span class="insight-label">Highest Wage Base</span>
+              <span class="insight-value">$72,800</span>
+              <span class="insight-detail">Washington State</span>
+            </div>
+            <div class="insight-item">
+              <span class="insight-label">Lowest Wage Base</span>
+              <span class="insight-value">$7,000</span>
+              <span class="insight-detail">Multiple States</span>
+            </div>
+            <div class="insight-item">
+              <span class="insight-label">Highest New Employer Rate</span>
+              <span class="insight-value">4.1%</span>
+              <span class="insight-detail">New York</span>
+            </div>
+            <div class="insight-item">
+              <span class="insight-label">Lowest New Employer Rate</span>
+              <span class="insight-value">0.5%</span>
+              <span class="insight-detail">South Carolina</span>
+            </div>
+          </div>
+
+          <div class="rate-trends">
+            <h4>Rate Trends</h4>
+            <ul>
+              <li>
+                <strong>Rate Ranges:</strong> Most states maintain rates between 0.1% and 14.37%
+              </li>
+              <li>
+                <strong>Wage Bases:</strong> Range from $7,000 to $72,800, with median around $15,000
+              </li>
+              <li>
+                <strong>New Employer Rates:</strong> Typically between 1.0% and 4.1%
+              </li>
+              <li>
+                <strong>Regional Variations:</strong> Western states tend to have higher wage bases
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .key-info {
+    padding: 4rem 2rem;
+    background-color: var(--background-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+  }
+
+  h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+
+  .stat span {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .rate-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .summary-stat {
+    text-align: center;
+  }
+
+  .summary-stat .label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .summary-stat .value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0.25rem 0;
+  }
+
+  .summary-stat .state {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+
+  p {
+    color: var(--text-color);
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .cost-sections {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .cost-section {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1rem;
+  }
+
+  .cost-section h4 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cost-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cost-section li {
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .cost-section li::before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  .cost-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .summary-box {
+    text-align: center;
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 0.5rem;
+  }
+
+  .summary-box strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-box span {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .tax-insights {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .tax-insights h4 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .insight-item {
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .insight-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .insight-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+  }
+
+  .insight-detail {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+
+  .rate-trends {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .rate-trends ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .rate-trends li {
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    font-size: 0.95rem;
+  }
+
+  .rate-trends li:last-child {
+    margin-bottom: 0;
+  }
+
+  .rate-trends strong {
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .rate-summary {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .key-info {
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .cost-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .insights-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style> 

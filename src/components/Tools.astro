@@ -1,0 +1,103 @@
+---
+const tools = [
+  {
+    title: "Claims Tracker",
+    description: "Keep track of all your ongoing unemployment claims.",
+    icon: "📊"
+  },
+  {
+    title: "Tax Calculator",
+    description: "Estimate your unemployment tax rates based on your state.",
+    icon: "🧮"
+  },
+  {
+    title: "Appeals Guide",
+    description: "A step-by-step guide to help you prepare for successful unemployment appeals.",
+    icon: "📋"
+  }
+];
+---
+
+<section id="tools" class="tools-section">
+  <div class="container">
+    <h2>Tools & Resources</h2>
+    
+    <div class="tools-grid">
+      {tools.map(tool => (
+        <div class="tool-card">
+          <div class="tool-icon">{tool.icon}</div>
+          <h3>{tool.title}</h3>
+          <p>{tool.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tools-section {
+    padding: 4rem 2rem;
+    background-color: var(--background-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .tool-card {
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: 1rem;
+    text-align: center;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  .tool-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .tool-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: var(--text-color);
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .tools-section {
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style> 

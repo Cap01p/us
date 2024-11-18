@@ -1,0 +1,329 @@
+---
+const economicStats = [
+  {
+    stat: "30%",
+    description: "Average reduction in unemployment insurance expenses",
+    comparison: "Through proper workforce planning"
+  },
+  {
+    stat: "$4,200-$7,000",
+    description: "Average cost per unemployment claim",
+    comparison: "Varies by industry"
+  }
+];
+
+const solutionCategories = [
+  {
+    title: "Cost Management Solutions",
+    items: [
+      "Automated claims tracking and analysis",
+      "Overpayment detection systems",
+      "Workforce planning optimization",
+      "Regional job creation initiatives"
+    ]
+  },
+  {
+    title: "Workforce Development",
+    items: [
+      "Structured apprenticeship programs",
+      "Digital skills training",
+      "Entry-level job creation",
+      "Mentorship programs"
+    ]
+  },
+  {
+    title: "Policy Initiatives",
+    items: [
+      "Tax credits for hiring",
+      "Structural economic reforms",
+      "Local industry development",
+      "Flexible work policies"
+    ]
+  }
+];
+
+const keyInsights = [
+  {
+    category: "Long-Term Solutions",
+    points: [
+      "Focus on reducing long-term unemployment",
+      "Implementation of job training programs",
+      "Business incentives for hiring",
+      "Modernized education systems"
+    ]
+  },
+  {
+    category: "Economic Benefits",
+    points: [
+      "Reduced cost per claim",
+      "Improved economic stability",
+      "More efficient resource utilization",
+      "Lower insurance expenses"
+    ]
+  },
+  {
+    category: "Strategic Approaches",
+    points: [
+      "Freelance workforce integration",
+      "Regional job creation initiatives",
+      "Industry-specific training programs",
+      "Unemployment cost analysis"
+    ]
+  }
+];
+---
+
+<section class="facts-section">
+  <div class="container">
+    <h2>Facts & Solutions</h2>
+    
+    <div class="economic-stats">
+      <h3>Cost Impact</h3>
+      <div class="stats-grid">
+        {economicStats.map(stat => (
+          <div class="stat-card">
+            <div class="stat-number">{stat.stat}</div>
+            <div class="stat-description">{stat.description}</div>
+            <div class="stat-comparison">{stat.comparison}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="solutions-overview">
+      <h3>Management Solutions</h3>
+      <div class="solutions-grid">
+        {solutionCategories.map(category => (
+          <div class="solution-card">
+            <h4>{category.title}</h4>
+            <ul>
+              {category.items.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="key-insights">
+      <h3>Strategic Insights</h3>
+      <div class="insights-grid">
+        {keyInsights.map(insight => (
+          <div class="insight-card">
+            <h4>{insight.category}</h4>
+            <ul>
+              {insight.points.map(point => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="citations">
+      <h4>Sources & References</h4>
+      <ol>
+        <li>Unemployment Insurance Cost Management Studies</li>
+        <li>Global Youth Employment Statistics</li>
+        <li>Workforce Development Research</li>
+        <li>Economic Policy Analysis</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .facts-section {
+    padding: 4rem 2rem;
+    background-color: var(--background-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+  }
+
+  .economic-stats {
+    margin-bottom: 4rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .stat-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .stat-description {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-comparison {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .solutions-overview {
+    margin: 4rem 0;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .solution-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  .solution-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .solution-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .solution-card li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-color);
+  }
+
+  .solution-card li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+  }
+
+  .key-insights {
+    margin: 4rem 0;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .insight-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  .insight-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .insight-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .insight-card li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-color);
+  }
+
+  .insight-card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+  }
+
+  .citations {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  .citations h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .citations ol {
+    padding-left: 1.5rem;
+    color: var(--text-color);
+    opacity: 0.9;
+  }
+
+  .citations li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .facts-section {
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+    }
+
+    .solutions-grid,
+    .insights-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style> 

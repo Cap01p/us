@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Terms of Service | Us4U - Unemployment Cost Management"
+  description="Review Us4U's terms of service for our unemployment cost management platform. Learn about user responsibilities and service conditions."
+>
+  <main class="policy-page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> / Terms of Service
+      </nav>
+      
+      <h1>Terms of Service</h1>
+      
+      <div class="content">
+        <section>
+          <h2>Agreement to Terms</h2>
+          <p>By accessing our website at Us4U.us, you agree to be bound by these terms of service and comply with all applicable laws and regulations.</p>
+        </section>
+
+        <section>
+          <h2>Use License</h2>
+          <p>Permission is granted to temporarily access the materials on Us4U's website for personal, non-commercial use. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+          <ul>
+            <li>Modify or copy the materials</li>
+            <li>Use the materials for any commercial purpose</li>
+            <li>Attempt to reverse engineer any software contained on Us4U's website</li>
+            <li>Remove any copyright or other proprietary notations from the materials</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Disclaimer</h2>
+          <p>The materials on Us4U's website are provided on an 'as is' basis. Us4U makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation:</p>
+          <ul>
+            <li>Implied warranties of merchantability</li>
+            <li>Fitness for a particular purpose</li>
+            <li>Non-infringement of intellectual property</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Limitations</h2>
+          <p>In no event shall Us4U or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Us4U's website.</p>
+        </section>
+
+        <div class="related-links">
+          <h3>Related Information</h3>
+          <ul>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Using the same styles as privacy.astro for consistency */
+  .policy-page {
+    padding: 4rem 2rem;
+    background-color: var(--background-color);
+    min-height: 80vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+  }
+
+  .content {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--card-border);
+  }
+
+  section {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  p, li {
+    color: var(--text-color);
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .related-links {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .related-links h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .related-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .related-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .related-links a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .policy-page {
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style> 
